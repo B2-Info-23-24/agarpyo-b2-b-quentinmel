@@ -54,3 +54,4 @@ class Button():
                 self.onclickFunction()
                 if self.onePress:
                     self.alreadyPressed = True
+
