@@ -38,3 +38,4 @@ class Checkbox:
 
     def is_checked(self):
         return self.checked
+
