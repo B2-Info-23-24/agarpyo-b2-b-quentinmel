@@ -25,7 +25,7 @@ class Button():
         self.buttonRect = self.buttonSurface.get_rect(topleft=(self.x, self.y))
 
         self.font = pygame.font.SysFont(None, 24)
-        self.textSurf = self.font.render(self.buttonText, True, (0, 0, 0))  # Noir
+        self.textSurf = self.font.render(self.buttonText, True, (0, 0, 0))
 
         Button.buttons.append(self)
 
