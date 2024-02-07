@@ -15,9 +15,6 @@ pygame.display.set_caption("Agarpyo")
 background = Background("assets/bg.jpg", [0,0])
 font = pygame.font.SysFont('Arial', 40)
 
-fps = 60
-fpsClock = pygame.time.Clock()
-
 def PlayWithKeyboard():
     print('Play With Keyboard')
     new_screen = pygame.display.set_mode((width, height))
@@ -114,8 +111,6 @@ def main_menu():
         process_buttons()
 
         pygame.display.update()
-        fpsClock.tick(fps)
-
 
 main_menu()
 
