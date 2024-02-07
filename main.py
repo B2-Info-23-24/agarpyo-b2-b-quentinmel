@@ -15,42 +15,39 @@ pygame.display.set_caption("Agarpyo")
 background = Background("assets/bg.jpg", [0,0])
 font = pygame.font.SysFont('Arial', 40)
 
-def PlayWithKeyboard():
-    print('Play With Keyboard')
+def PlayGame(mode):
     new_screen = pygame.display.set_mode((width, height))
-    pygame.display.set_caption("Play With Keyboard")
-
     new_game_started = True
     
     while new_game_started:
         new_screen.fill((255, 255, 255))
         pygame.display.update()
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+                
+            if mode == "Keyboard" and event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    print("Key q has been pressed")
+                elif event.key == pygame.K_z:
+                    print("Key z has been pressed")
+                elif event.key == pygame.K_s:
+                    print("Key s has been pressed")
+                elif event.key == pygame.K_d:
+                    print("Key d has been pressed")
+                    
         keys = pygame.key.get_pressed()
         if keys[pygame.K_ESCAPE]:
             new_game_started = False
             
-def PlayWithMouse():
-    print('Play With Mouse')
-    new_screen = pygame.display.set_mode((width, height))
-    pygame.display.set_caption("Play With Keyboard")
-
-    new_game_started = True
-    
-    while new_game_started:
-        new_screen.fill((255, 255, 255))
+        if mode == "Mouse":
+            mouse_pos = pygame.mouse.get_pos()
+            print(mouse_pos)
+        
         pygame.display.update()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_ESCAPE]:
-            new_game_started = False
-
+                            
 def my_function():
     global game_started
     game_started = False
@@ -62,8 +59,8 @@ checkbox3 = Checkbox(screen, 700, 100, caption="Difficile")
 checkboxes = [checkbox1, checkbox2, checkbox3]
 
 buttons = [
-    Button(450, 200, 400, 80, 'Play With KeyBoard', PlayWithKeyboard),
-    Button(450, 300, 400, 80, 'Play With Mouse', PlayWithMouse),
+    Button(450, 200, 400, 80, 'Play With KeyBoard', lambda: PlayGame("Keyboard")),
+    Button(450, 300, 400, 80, 'Play With Mouse', lambda: PlayGame("Mouse")),
     Button(450, 600, 400, 80, 'Quit', my_function)
 ]
 
