@@ -1,79 +1,81 @@
 import pygame
-import sys
 from checkbox import Checkbox
 from button import Button
-from game import PlayGame
-from background import Background
+from game import Game
 
-pygame.init()
+class Menu:
+    def __init__(self, screen):
+        self.screen = screen
+        self.game_started = True
+        self.background = pygame.image.load("assets/bg.jpg")
+        self.font = pygame.font.SysFont('Arial', 40)
 
-width = 1280
-height = 720
-game_started = True
+        self.checkbox1 = Checkbox(self.screen, 500, 100, caption="Facile", checked=True)
+        self.checkbox2 = Checkbox(self.screen, 600, 100, caption="Normale")
+        self.checkbox3 = Checkbox(self.screen, 700, 100, caption="Difficile")
+        self.checkboxes = [self.checkbox1, self.checkbox2, self.checkbox3]
 
-screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption("Agarpyo")
-background = Background("assets/bg.jpg", [0,0])
-font = pygame.font.SysFont('Arial', 40)
+        self.buttons = [
+            Button(450, 200, 400, 80, 'Play With KeyBoard', self.play_game_keyboard),
+            Button(450, 300, 400, 80, 'Play With Mouse', self.play_game_mouse),
+            Button(450, 600, 400, 80, 'Quit', self.quit_game)
+        ]
 
-def my_function():
-    global game_started
-    game_started = False
+    def play_game_keyboard(self):
+        selected_checkbox = self.get_selected_checkbox()
+        if selected_checkbox:
+            difficulty = selected_checkbox.caption
+            game = Game(self.screen, "Keyboard", difficulty)
+            game.run()
 
-checkbox1 = Checkbox(screen, 500, 100, caption="Facile", checked=True)
-checkbox2 = Checkbox(screen, 600, 100, caption="Normale")
-checkbox3 = Checkbox(screen, 700, 100, caption="Difficile")
+    def play_game_mouse(self):
+        selected_checkbox = self.get_selected_checkbox()
+        if selected_checkbox:
+            difficulty = selected_checkbox.caption
+            game = Game(self.screen, "Mouse", difficulty)
+            game.run()
 
-checkboxes = [checkbox1, checkbox2, checkbox3]
+    def quit_game(self):
+        self.game_started = False
 
-buttons = [
-    Button(450, 200, 400, 80, 'Play With KeyBoard', lambda: PlayGame("Keyboard")),
-    Button(450, 300, 400, 80, 'Play With Mouse', lambda: PlayGame("Mouse")),
-    Button(450, 600, 400, 80, 'Quit', my_function)
-]
+    def get_selected_checkbox(self):
+        for checkbox in self.checkboxes:
+            if checkbox.is_checked():
+                return checkbox
+        return None
 
-def get_selected_checkbox():
-    for checkbox in checkboxes:
-        if checkbox.is_checked():
-            return checkbox
-    return None
+    def process_buttons(self):
+        mouse_pos = pygame.mouse.get_pos()
+        click = pygame.mouse.get_pressed()
 
-def process_buttons():
-    mouse_pos = pygame.mouse.get_pos()
-    click = pygame.mouse.get_pressed()
+        for checkbox in self.checkboxes:
+            checkbox.render_checkbox()
 
-    checkbox1.render_checkbox()
-    checkbox2.render_checkbox()
-    checkbox3.render_checkbox()
+        for button in self.buttons:
+            button.handle_event(pygame.event.Event(pygame.MOUSEMOTION, {'pos': mouse_pos}))
+            if click[0]:
+                button.handle_event(pygame.event.Event(pygame.MOUSEBUTTONDOWN, {'button': 1, 'pos': mouse_pos}))
+            button.render(self.screen)
 
-    for button in buttons:
-        button.handle_event(pygame.event.Event(pygame.MOUSEMOTION, {'pos': mouse_pos}))
-        if click[0]:
-            button.handle_event(pygame.event.Event(pygame.MOUSEBUTTONDOWN, {'button': 1, 'pos': mouse_pos}))
-        button.render(screen)
+        selected_checkbox = self.get_selected_checkbox()
+        if selected_checkbox:
+            print("Checkbox sélectionnée:", selected_checkbox.caption)
 
-    selected_checkbox = get_selected_checkbox()
-    if selected_checkbox:
-        print("Checkbox sélectionnée:", selected_checkbox.caption)
+    def run(self):
+        while self.game_started:
+            self.screen.blit(self.background, (0, 0))
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    quit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_p:
+                        print("Key p has been pressed")
+                    if event.key == pygame.K_q:
+                        print("Key q has been pressed")
+                for checkbox in self.checkboxes:
+                    checkbox.update_checkbox(event)
 
-def main_menu():
-    while game_started:
-        screen.fill((255, 255, 255))
-        screen.blit(background.image, background.rect)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_p:
-                    print("Key p has been pressed")
-                if event.key == pygame.K_q:
-                    print("Key q has been pressed")
-            checkbox1.update_checkbox(event)
-            checkbox2.update_checkbox(event)
-            checkbox3.update_checkbox(event)
-
-        process_buttons()
-
-        pygame.display.update()
+            self.process_buttons()
+            pygame.display.update()
 
