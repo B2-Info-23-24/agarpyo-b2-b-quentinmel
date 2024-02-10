@@ -57,10 +57,6 @@ class Menu:
                 button.handle_event(pygame.event.Event(pygame.MOUSEBUTTONDOWN, {'button': 1, 'pos': mouse_pos}))
             button.render(self.screen)
 
-        selected_checkbox = self.get_selected_checkbox()
-        if selected_checkbox:
-            print("Checkbox sélectionnée:", selected_checkbox.caption)
-
     def run(self):
         while self.game_started:
             self.screen.blit(self.background, (0, 0))
@@ -70,9 +66,9 @@ class Menu:
                     quit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_p:
-                        print("Key p has been pressed")
+                        self.play_game_keyboard()
                     if event.key == pygame.K_q:
-                        print("Key q has been pressed")
+                        self.quit_game()
                 for checkbox in self.checkboxes:
                     checkbox.update_checkbox(event)
 
