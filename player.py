@@ -6,38 +6,79 @@ from circle import Circle
 class Player(Circle):
     def __init__(self, x, y, radius, color, obstacle_rects, food_rects):
         Circle.__init__(self, x, y, radius, color)
+        self.speed = 100
+        self.radius = radius
         valid_position = False
+        self.update_rect()
         while not valid_position:
-            self.rect = pygame.Rect(x - radius, y - radius, radius * 2, radius * 2)
             if self.rect.collidelist(obstacle_rects) == -1 and self.rect.collidelist(food_rects) == -1:
                 valid_position = True
             else:
                 x = random.randint(0, 1280)
                 y = random.randint(0, 720)
+                self.update_rect(x, y)
         
     def move_keyboard(self, keys, fps):
         if keys[pygame.K_q]:
-            self.rect.x -= 200 / fps
+            self.rect.x -= self.speed / fps
         if keys[pygame.K_d]:
-            self.rect.x += 200 / fps
+            self.rect.x += self.speed / fps
         if keys[pygame.K_z]:
-            self.rect.y -= 200 / fps
+            self.rect.y -= self.speed / fps
         if keys[pygame.K_s]:
-            self.rect.y += 200 / fps
+            self.rect.y += self.speed / fps
     
     def move_mouse(self, mouse_pos, fps):
         target_x, target_y = mouse_pos
         dx = target_x - self.rect.centerx
         dy = target_y - self.rect.centery
         distance = math.sqrt(dx ** 2 + dy ** 2)
+        
         if distance != 0:
-            speed_factor = min(distance, 200) / distance
-            self.rect.x += dx * speed_factor / fps
-            self.rect.y += dy * speed_factor / fps
-
+            direction_x = dx / distance
+            direction_y = dy / distance
+        else:
+            direction_x, direction_y = 0, 0
+        
+        self.rect.x += direction_x * self.speed / fps
+        self.rect.y += direction_y * self.speed / fps
 
     def move(self, keys, mouse_pos, mode, fps):
         if mode == "Keyboard":
             self.move_keyboard(keys, fps)
         elif mode == "Mouse":
             self.move_mouse(mouse_pos, fps)
+
+    def draw(self, screen):
+            pygame.draw.circle(screen, self.color, self.rect.center, self.radius)
+        
+    def increase_speed(self, amount):
+        if self.speed <= 500:
+            self.speed += amount
+    
+    def update_rect(self, x=None, y=None):
+        if x is None:
+            x = self.rect.x
+        if y is None:
+            y = self.rect.y
+        self.rect = pygame.Rect(x - self.radius, y - self.radius, self.radius * 2, self.radius * 2)
+
+    def increase_size(self, amount):
+        if self.radius <= 200:
+            self.radius += amount
+            old_center = self.rect.center
+            self.update_rect()
+            self.rect.center = old_center
+    
+    def decrease_size_and_speed(self, difficulty, obstacle_radius):
+        if obstacle_radius < self.radius:
+            if difficulty == "Facile":
+                factor = 2
+            elif difficulty == "Normal":
+                factor = 3
+            elif difficulty == "Difficile":
+                factor = 4
+                
+            self.radius //= factor
+            self.speed //= factor
+            self.update_rect()
