@@ -9,6 +9,7 @@ class Player(Circle):
         self.speed = 100
         self.radius = radius
         valid_position = False
+        self.score = 0
         self.update_rect()
         while not valid_position:
             if self.rect.collidelist(obstacle_rects) == -1 and self.rect.collidelist(food_rects) == -1:
