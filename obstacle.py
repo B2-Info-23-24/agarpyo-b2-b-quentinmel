@@ -1,3 +1,4 @@
+import math
 import pygame
 import random
 from circle import Circle
@@ -7,6 +8,7 @@ class Obstacle(Circle):
         Circle.__init__(self, x, y, radius, (0, 0, 0))
         self.obstacles = []
         valid_position = False
+        self.radius = radius
         while not valid_position:
             self.rect = pygame.Rect(x - radius, y - radius, radius * 2, radius * 2)
             if self.rect.collidelist(food_rects) == -1:
@@ -46,13 +48,11 @@ class Obstacle(Circle):
             rects.append(obs.rect)
         return rects
     
-    def collide(self, player, food_rects):
+    def collide(self, player):
         for obs in self.obstacles:
             if obs.rect.colliderect(player.rect):
-                self.obstacles.remove(obs)
-                self.add_new_obstacle(food_rects)
-                return True
-        return False
+                return obs
+        return None
     
     def add_new_obstacle(self, food_rects):
         valid_position = False
@@ -75,4 +75,19 @@ class Obstacle(Circle):
                 valid_position = True
         new_obstacle = Obstacle(x, y, radius, food_rects)
         self.obstacles.append(new_obstacle)
-
+    
+    def get_obstacle_touche(self, player, player_radius):
+            for obs in self.obstacles:
+                if obs.rect.colliderect(player.rect) and player_radius > self.radius:
+                    return True
+            return False
+    
+    def update_obstacle(self, food_rects):
+        for obs in self.obstacles:
+            if obs.rect.collidelist(food_rects) != -1:
+                self.obstacles.remove(obs)
+                self.add_new_obstacle(food_rects)
+    
+    def get_distance_to_player(self, player):
+        distance = math.sqrt((self.rect.centerx - player.rect.centerx)**2 + (self.rect.centery - player.rect.centery)**2)
+        return distance

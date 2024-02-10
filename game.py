@@ -19,12 +19,12 @@ class Game:
         self.food = Food(0, 0, 0, obstacle_rects)
         self.food.createFood(self.difficulty, obstacle_rects)
         food_rects = self.food.get_food_rects()
-        self.player = Player(50, 50, 25, (255, 0, 0), obstacle_rects, food_rects)
+        self.player = Player(50, 50, 40, (255, 0, 0), obstacle_rects, food_rects)
 
     def run(self):
         pygame.display.set_mode((self.width, self.height))
         new_game_started = True
-        FPS = 60
+        fps = 60
 
         while new_game_started:
             self.screen.fill((255, 255, 255))
@@ -43,11 +43,20 @@ class Game:
                 if event.type == pygame.QUIT:
                     pygame.quit()
 
-            if self.obstacle.collide(self.player, self.food.foods):
-                print("Collision Obstacle")
-            if self.food.collide(self.player, self.obstacle.obstacles):
-                print("Food Collision")
+            if self.obstacle.collide(self.player):
+                obstacle_touche = self.obstacle.collide(self.player)
+                if obstacle_touche:
+                    if self.player.radius > obstacle_touche.radius:
+                        distance = obstacle_touche.get_distance_to_player(self.player)
+                        if distance <= self.player.radius + obstacle_touche.radius:
+                            self.obstacle.obstacles.remove(obstacle_touche)
+                            self.obstacle.add_new_obstacle(self.food.get_food_rects())
+                            self.player.decrease_size_and_speed(self.difficulty, obstacle_touche.radius)
 
-            self.player.move(keys, pygame.mouse.get_pos(), self.mode, fps=FPS)
-            self.clock.tick(FPS)
+            if self.food.collide(self.player, self.obstacle.obstacles):
+                self.player.increase_speed(5)
+                self.player.increase_size(2)
+
+            self.player.move(keys, pygame.mouse.get_pos(), self.mode, fps)
+            self.clock.tick(fps)
             pygame.display.update()
