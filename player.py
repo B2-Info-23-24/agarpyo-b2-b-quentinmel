@@ -4,13 +4,14 @@ import random
 from circle import Circle
 
 class Player(Circle):
-    def __init__(self, x, y, radius, color, obstacle_rects, food_rects):
+    def __init__(self, x, y, radius, color, obstacle_rects, food_rects, screen):
         Circle.__init__(self, x, y, radius, color)
         self.speed = 100
         self.radius = radius
         valid_position = False
         self.score = 0
         self.update_rect()
+        self.screen = screen
         while not valid_position:
             if self.rect.collidelist(obstacle_rects) == -1 and self.rect.collidelist(food_rects) == -1:
                 valid_position = True
@@ -22,13 +23,21 @@ class Player(Circle):
     def move_keyboard(self, keys, fps):
         if keys[pygame.K_q]:
             self.rect.x -= self.speed / fps
+            if self.rect.right < 0:
+                self.rect.x = self.screen.get_width()
         if keys[pygame.K_d]:
             self.rect.x += self.speed / fps
+            if self.rect.left > self.screen.get_width():
+                self.rect.x = -self.rect.width
         if keys[pygame.K_z]:
             self.rect.y -= self.speed / fps
+            if self.rect.bottom < 0:
+                self.rect.y = self.screen.get_height()
         if keys[pygame.K_s]:
             self.rect.y += self.speed / fps
-    
+            if self.rect.top > self.screen.get_height():
+                self.rect.y = -self.rect.height
+                
     def move_mouse(self, mouse_pos, fps):
         target_x, target_y = mouse_pos
         dx = target_x - self.rect.centerx
@@ -40,9 +49,19 @@ class Player(Circle):
             direction_y = dy / distance
         else:
             direction_x, direction_y = 0, 0
-        
+
+        if self.rect.left < 0:
+            self.rect.right = self.screen.get_width()
+        elif self.rect.right > self.screen.get_width():
+            self.rect.left = 0
+        if self.rect.top < 0:
+            self.rect.bottom = self.screen.get_height()
+        elif self.rect.bottom > self.screen.get_height():
+            self.rect.top = 0
+
         self.rect.x += direction_x * self.speed / fps
         self.rect.y += direction_y * self.speed / fps
+
 
     def move(self, keys, mouse_pos, mode, fps):
         if mode == "Keyboard":

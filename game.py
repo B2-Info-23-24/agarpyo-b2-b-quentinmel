@@ -22,7 +22,7 @@ class Game:
         self.food = Food(0, 0, 0, obstacle_rects)
         self.food.createFood(self.difficulty, obstacle_rects)
         food_rects = self.food.get_food_rects()
-        self.player = Player(50, 50, 40, (255, 0, 0), obstacle_rects, food_rects)
+        self.player = Player(100, 100, 40, (255, 0, 0), obstacle_rects, food_rects, screen)
 
     def run(self):
         pygame.display.set_mode((self.width, self.height))
