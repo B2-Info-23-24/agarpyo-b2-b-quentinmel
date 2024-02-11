@@ -16,8 +16,8 @@ class Player(Circle):
             if self.rect.collidelist(obstacle_rects) == -1 and self.rect.collidelist(food_rects) == -1:
                 valid_position = True
             else:
-                x = random.randint(0, 1280)
-                y = random.randint(0, 720)
+                x = random.randint(0, 1200)
+                y = random.randint(0, 680)
                 self.update_rect(x, y)
         
     def move_keyboard(self, keys, fps):
