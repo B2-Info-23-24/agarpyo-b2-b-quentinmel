@@ -191,6 +191,7 @@ You have three difficulty choices.
   - ### Hard
     4 traps and 2 foods
 
+
 You can choose to play with the keyboard (ZQSD : z keys to go up, q to go left, s to go down and d to go right)
 or play with the cursor.
 
