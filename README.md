@@ -179,6 +179,12 @@ pip install -r requirements.txt
 
 ## Use
 
+To launch the application, enter the command.
+
+```bash
+python main.py
+```
+
 ## Licence
 This project is licensed under [MIT](LICENSE).
 
