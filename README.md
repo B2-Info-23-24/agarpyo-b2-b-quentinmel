@@ -204,6 +204,8 @@ If the player reaches the edge of the map, he is automatically teleported in the
 
 In the menu, if you press the P key this will make you launch the game with the keyboard and if you press the Q key this will exit the application.
 
+In the middle of the game, the Escape button allows you to return to the main menu
+
 ## Licence
 This project is licensed under [MIT](LICENSE).
 
