@@ -6,7 +6,6 @@ AgarPYo is a revisited version of the famous Agar.io game, built entirely using 
 
 Make sure you have installed the following software and package versions.
 
-- [Anaconda](https://www.anaconda.com/products/distribution)
 - Python (version : 3.10.13)
 - Pygame (version 2.5.2)
 
@@ -33,7 +32,7 @@ pygame==2.5.2
 Create a virtual environment (optional, but recommended).
 
 ```bash
-python -m venv venv
+py -m venv venv
 ```
 
 Enable the virtual environment.
@@ -54,9 +53,23 @@ Install the dependencies with pip from the requirements.txt file.
 pip install -r requirements.txt
 ```
 
+If that doesn't work, install [Anaconda](https://www.anaconda.com/products/distribution) and follow the instructions of the Environment Anaconda.
+
 ## Environnement Anaconda
 
 If you want to launch with anaconda, make sure you have configured your Anaconda environment with the following specifications.
+
+Clone the repository to your local machine.
+
+```bash
+git clone https://github.com/B2-Info-23-24/agarpyo-b2-b-quentinmel.git
+```
+
+Go to the project.
+
+```bash
+cd agarpyo-b2-b-quentinmel
+```
 
 Create a file named environment.yaml whith this following content.
 
@@ -97,7 +110,13 @@ conda activate AgarPYo
 
 ## Use
 
-To launch the application, enter the command.
+To launch the application without Anaconda, enter the command.
+
+```bash
+py main.py
+```
+
+To launch the application with Anaconda, enter the command.
 
 ```bash
 python main.py
