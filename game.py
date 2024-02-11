@@ -2,6 +2,7 @@ import pygame
 from player import Player
 from obstacle import Obstacle
 from food import Food
+from finish import Finish
 
 class Game:
     def __init__(self, screen, mode, difficulty):
@@ -14,7 +15,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font(None, 36)
         self.start_time = pygame.time.get_ticks() // 1000
-        self.timer = 60
+        self.timer = 5
         food_rects = []
         self.obstacle = Obstacle(0, 0, 0, food_rects)
         self.obstacle.createObstacle(self.difficulty, food_rects)
@@ -22,7 +23,7 @@ class Game:
         self.food = Food(0, 0, 0, obstacle_rects)
         self.food.createFood(self.difficulty, obstacle_rects)
         food_rects = self.food.get_food_rects()
-        self.player = Player(100, 100, 40, (255, 0, 0), obstacle_rects, food_rects, screen)
+        self.player = Player(100, 100, 40, (255, 0, 0), obstacle_rects, food_rects, screen)        
 
     def run(self):
         pygame.display.set_mode((self.width, self.height))
@@ -30,7 +31,7 @@ class Game:
         fps = 60
         remaining_time = 60
 
-        while new_game_started and remaining_time > 0:
+        while new_game_started:
             self.screen.fill((255, 255, 255))
             self.player.draw(self.screen)
             for obs in self.obstacle.obstacles:
@@ -60,7 +61,7 @@ class Game:
             keys = pygame.key.get_pressed()
             if keys[pygame.K_ESCAPE]:
                 new_game_started = False
-
+            
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -83,3 +84,8 @@ class Game:
             self.player.move(keys, pygame.mouse.get_pos(), self.mode, fps)
             self.clock.tick(fps)
             pygame.display.update()
+
+            if remaining_time == 0:
+                new_game_started = False
+                finish = Finish(self.screen, self.player.score, self.difficulty, self.player)
+                finish.run()              
