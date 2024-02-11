@@ -18,6 +18,38 @@ Clone the repository to your local machine.
 git clone https://github.com/B2-Info-23-24/agarpyo-b2-b-quentinmel.git
 ```
 
+Go to the project.
+
+```bash
+cd agarpyo-b2-b-quentinmel
+```
+
+Create a file named environment.yaml whith this following content.
+
+```yaml
+name: AgarPYo
+channels:
+  - defaults
+dependencies:
+  - bzip2=1.0.8=he774522_0
+  - ca-certificates=2023.12.12=haa95532_0
+  - libffi=3.4.4=hd77b12b_0
+  - openssl=3.0.13=h2bbff1b_0
+  - pip=23.3.1=py310haa95532_0
+  - python=3.10.13=he1021f5_0
+  - setuptools=68.2.2=py310haa95532_0
+  - sqlite=3.41.2=h2bbff1b_0
+  - tk=8.6.12=h2bbff1b_0
+  - tzdata=2023d=h04d1e81_0
+  - vc=14.2=h21ff451_1
+  - vs2015_runtime=14.27.29016=h5e58377_2
+  - wheel=0.41.2=py310haa95532_0
+  - xz=5.4.5=h8cc25b3_0
+  - zlib=1.2.13=h8cc25b3_0
+  - pip:
+      - pygame==2.5.2
+```
+
 Create a virtual environment (optional, but recommended).
 
 ```bash
@@ -36,9 +68,15 @@ On macOS/Linux:
 source venv/bin/activate
 ```
 
+Install the dependencies with pip from the environment.yaml file.
+
+```bash
+pip install -r environment.yaml
+```
+
 ## Environnement Anaconda
 
-To run this project, make sure you have configured your Anaconda environment with the following specifications.
+If you want to launch with anaconda, make sure you have configured your Anaconda environment with the following specifications.
 
 ```yaml
 name: AgarPYo
