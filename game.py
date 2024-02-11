@@ -18,10 +18,10 @@ class Game:
         self.timer = 60
         food_rects = []
         self.obstacle = Obstacle(0, 0, 0, food_rects)
-        self.obstacle.createObstacle(self.difficulty, food_rects)
+        self.obstacle.create_obstacle(self.difficulty, food_rects)
         obstacle_rects = self.obstacle.get_obstacle_rects()
         self.food = Food(0, 0, 0, obstacle_rects)
-        self.food.createFood(self.difficulty, obstacle_rects)
+        self.food.create_food(self.difficulty, obstacle_rects)
         food_rects = self.food.get_food_rects()
         self.player = Player(100, 100, 40, (255, 0, 0), obstacle_rects, food_rects, screen)        
 
@@ -39,7 +39,7 @@ class Game:
             for food in self.food.foods:
                 food.draw(self.screen)
                 
-            text = f"Vitesse: {self.player.speed} | Score: {self.player.score} | Taille: {self.player.radius} | Difficulté: {self.difficulty}"
+            text = f"Speed: {self.player.speed} | Score: {self.player.score} | Size: {self.player.radius} | Difficulty: {self.difficulty}"
             text_surface = self.font.render(text, True, (0, 0, 0))
             text_rect = text_surface.get_rect(topleft=(11, 11))
             self.screen.blit(text_surface, text_rect)

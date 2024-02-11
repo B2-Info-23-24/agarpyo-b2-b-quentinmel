@@ -15,24 +15,24 @@ class Food(Circle):
                 x = random.randint(0, 1280)
                 y = random.randint(0, 720)
         
-    def createFood(self, difficulty, obstacle_rects):
+    def create_food(self, difficulty, obstacle_rects):
         self.foods.clear()
         
-        if difficulty == "Facile":
+        if difficulty == "Easy":
             for i in range(5):
                 x = random.randint(0, 1280)
                 y = random.randint(0, 720)
                 radius = random.randint(10, 20)
                 new_food = Food(x, y, radius, obstacle_rects)
                 self.foods.append(new_food)
-        elif difficulty == "Normale":
+        elif difficulty == "Normal":
             for i in range(3):
                 x = random.randint(0, 1280)
                 y = random.randint(0, 720)
                 radius = random.randint(10, 20)
                 new_food = Food(x, y, radius, obstacle_rects)
                 self.foods.append(new_food)
-        elif difficulty == "Difficile":
+        elif difficulty == "Hard":
             for i in range(2):
                 x = random.randint(0, 1280)
                 y = random.randint(0, 720)

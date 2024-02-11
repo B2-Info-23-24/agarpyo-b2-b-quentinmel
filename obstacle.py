@@ -17,24 +17,24 @@ class Obstacle(Circle):
                 x = random.randint(0, 1280)
                 y = random.randint(0, 720)
         
-    def createObstacle(self, difficulty, food_rects):
+    def create_obstacle(self, difficulty, food_rects):
         self.obstacles.clear()
         
-        if difficulty == "Facile":
+        if difficulty == "Easy":
             for i in range(2):
                 x = random.randint(0, 1280)
                 y = random.randint(0, 720)
                 radius = random.randint(40, 150)
                 new_obstacle = Obstacle(x, y, radius, food_rects)
                 self.obstacles.append(new_obstacle)
-        elif difficulty == "Normale":
+        elif difficulty == "Normal":
             for i in range(3):
                 x = random.randint(0, 1280)
                 y = random.randint(0, 720)
                 radius = random.randint(40, 150)
                 new_obstacle = Obstacle(x, y, radius, food_rects)
                 self.obstacles.append(new_obstacle)
-        elif difficulty == "Difficile":
+        elif difficulty == "Hard":
             for i in range(4):
                 x = random.randint(0, 1280)
                 y = random.randint(0, 720)

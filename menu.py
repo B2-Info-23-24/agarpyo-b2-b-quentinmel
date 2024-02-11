@@ -10,9 +10,9 @@ class Menu:
         self.background = pygame.image.load("assets/bg.jpg")
         self.font = pygame.font.SysFont('Arial', 40)
 
-        self.checkbox1 = Checkbox(self.screen, 500, 100, caption="Facile", checked=True)
-        self.checkbox2 = Checkbox(self.screen, 600, 100, caption="Normale")
-        self.checkbox3 = Checkbox(self.screen, 700, 100, caption="Difficile")
+        self.checkbox1 = Checkbox(self.screen, 500, 100, caption="Easy", checked=True)
+        self.checkbox2 = Checkbox(self.screen, 600, 100, caption="Normal")
+        self.checkbox3 = Checkbox(self.screen, 700, 100, caption="Hard")
         self.checkboxes = [self.checkbox1, self.checkbox2, self.checkbox3]
 
         self.buttons = [
