@@ -135,10 +135,10 @@ dependencies:
       - tzdata==2023.4
 ```
 
-To configure your Anaconda environment with these specifications, you can create a new environment with conda using the provided environment.yml file.
+To configure your Anaconda environment with these specifications, you can create a new environment with conda using the provided environment.yaml file.
 
 ```bash
-conda env create -f environment.yml
+conda env create -f environment.yaml
 ```
 
 Make sure to enable this environment before running the project.
