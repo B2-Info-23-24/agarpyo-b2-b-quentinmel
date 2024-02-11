@@ -184,12 +184,12 @@ python main.py
 
 You have three difficulty choices.
 
-  ### Easy
-  2 traps and 5 foods
-  ### Normal
-  3 traps and 3 foods
-  ### Hard
-  4 traps and 2 foods
+  - ### Easy
+    2 traps and 5 foods
+  - ### Normal
+    3 traps and 3 foods
+  - ### Hard
+    4 traps and 2 foods
 
 You can choose to play with the keyboard (ZQSD : z keys to go up, q to go left, s to go down and d to go right)
 or play with the cursor.
