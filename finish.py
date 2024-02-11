@@ -10,7 +10,7 @@ class Finish:
         self.width = 1280
         self.height = 720
         self.game_started = True
-        self.background = pygame.image.load("assets/bg.jpg")
+        self.background = pygame.image.load("assets/background.webp")
         self.buttons = [
             Button(450, 500, 400, 80, 'Return to Menu', self.return_to_menu),
             Button(450, 600, 400, 80, 'Quit', self.quit_function)

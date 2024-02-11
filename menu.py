@@ -7,7 +7,7 @@ class Menu:
     def __init__(self, screen):
         self.screen = screen
         self.game_started = True
-        self.background = pygame.image.load("assets/bg.jpg")
+        self.background = pygame.image.load("assets/background.webp")
         self.font = pygame.font.SysFont('Arial', 40)
 
         self.checkbox1 = Checkbox(self.screen, 500, 100, caption="Easy", checked=True)

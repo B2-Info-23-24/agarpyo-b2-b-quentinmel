@@ -12,6 +12,7 @@ class Game:
         self.difficulty = difficulty
         self.width = 1280
         self.height = 720
+        self.background = pygame.image.load("assets/background.webp")
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font(None, 36)
         self.start_time = pygame.time.get_ticks() // 1000
@@ -32,7 +33,7 @@ class Game:
         remaining_time = 60
 
         while new_game_started:
-            self.screen.fill((255, 255, 255))
+            self.screen.blit(self.background, (0, 0))
             self.player.draw(self.screen)
             for obs in self.obstacle.obstacles:
                 obs.draw(self.screen)
