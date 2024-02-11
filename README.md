@@ -192,13 +192,15 @@ You have three difficulty choices.
     4 traps and 2 foods
 
 
-You can choose to play with the keyboard (ZQSD : z keys to go up, q to go left, s to go down and d to go right)
-or play with the cursor.
+You can choose to play with the keyboard (ZQSD : z keys to go up, q to go left, s to go down and d to go right) or play with the cursor.
 
 If the player's height is smaller than the size of the trap, then the player will be able to hide under the trap and nothing will happen. If the player's size is greater than the size of the trap, then the player will have their size and speed divided by the number corresponding to the selected difficulty: 2 for easy, 3 for normal and 4 for hard.
 
 You have 60 seconds to amass as many scores as possible which increases by 1 for each food eaten.
+
 At the end of its 60 seconds, a page appears with your score and your difficulty then you will have the choice between leaving the application or returning to the menu.
+
+If the player reaches the edge of the map, he is automatically teleported in the same direction to the other side of the map.
 
 In the menu, if you press the P key this will make you launch the game with the keyboard and if you press the Q key this will exit the application.
 
