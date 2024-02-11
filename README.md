@@ -200,6 +200,8 @@ If the player's height is smaller than the size of the trap, then the player wil
 You have 60 seconds to amass as many scores as possible which increases by 1 for each food eaten.
 At the end of its 60 seconds, a page appears with your score and your difficulty then you will have the choice between leaving the application or returning to the menu.
 
+In the menu, if you press the P key this will make you launch the game with the keyboard and if you press the Q key this will exit the application.
+
 ## Licence
 This project is licensed under [MIT](LICENSE).
 
