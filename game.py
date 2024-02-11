@@ -15,7 +15,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font(None, 36)
         self.start_time = pygame.time.get_ticks() // 1000
-        self.timer = 5
+        self.timer = 60
         food_rects = []
         self.obstacle = Obstacle(0, 0, 0, food_rects)
         self.obstacle.createObstacle(self.difficulty, food_rects)
