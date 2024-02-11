@@ -10,6 +10,32 @@ Make sure you have installed the following software and package versions.
 - Python (version : 3.10.13)
 - Pygame (version 2.5.2)
 
+## Installation
+
+Clone the repository to your local machine.
+
+```bash
+git clone https://github.com/B2-Info-23-24/agarpyo-b2-b-quentinmel.git
+```
+
+Create a virtual environment (optional, but recommended).
+
+```bash
+python -m venv venv
+```
+
+Enable the virtual environment.
+
+On Windows:
+```bash
+venv\Scripts\activate
+```
+
+On macOS/Linux:
+```bash
+source venv/bin/activate
+```
+
 ## Environnement Anaconda
 
 To run this project, make sure you have configured your Anaconda environment with the following specifications.
@@ -144,32 +170,6 @@ conda env create -f environment.yaml
 Make sure to enable this environment before running the project.
 ```bash
 conda activate AgarPYo
-```
-
-## Installation
-
-Clone the repository to your local machine.
-
-```bash
-git clone https://github.com/B2-Info-23-24/agarpyo-b2-b-quentinmel.git
-```
-
-Create a virtual environment (optional, but recommended).
-
-```bash
-python -m venv venv
-```
-
-Enable the virtual environment.
-
-On Windows:
-```bash
-venv\Scripts\activate
-```
-
-On macOS/Linux:
-```bash
-source venv/bin/activate
 ```
 
 ## Use
