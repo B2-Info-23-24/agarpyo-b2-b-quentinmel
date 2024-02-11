@@ -172,11 +172,6 @@ On macOS/Linux:
 source venv/bin/activate
 ```
 
-Install the dependencies with pip from the requirements.txt file.
-```
-pip install -r requirements.txt
-```
-
 ## Use
 
 To launch the application, enter the command.
