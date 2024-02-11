@@ -10,7 +10,7 @@ Make sure you have installed the following software and package versions.
 - Python (version : 3.10.13)
 - Pygame (version 2.5.2)
 
-## Installation
+## Installation (without Anaconda)
 
 Clone the repository to your local machine.
 
