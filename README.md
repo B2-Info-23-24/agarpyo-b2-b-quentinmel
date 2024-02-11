@@ -4,11 +4,11 @@ AgarPYo is a revisited version of the famous Agar.io game, built entirely using 
 
 ## Prerequisites
 
-Make sure you have the specified versions of the following packages installed on your system, as well as Python if you don't use Anaconda.
+Make sure you have installed the following software and package versions.
 
+- [Anaconda](https://www.anaconda.com/products/distribution)
 - Python (version : 3.10.13)
 - Pygame (version 2.5.2)
-- ...
 
 ## Environnement Anaconda
 
@@ -135,10 +135,10 @@ dependencies:
       - tzdata==2023.4
 ```
 
-To configure your Anaconda environment with these specifications, you can create a new environment with conda using the provided environment.yml file.
+To configure your Anaconda environment with these specifications, you can create a new environment with conda using the provided environment.yaml file.
 
 ```bash
-conda env create -f environment.yml
+conda env create -f environment.yaml
 ```
 
 Make sure to enable this environment before running the project.
@@ -178,6 +178,12 @@ pip install -r requirements.txt
 ```
 
 ## Use
+
+To launch the application, enter the command.
+
+```bash
+python main.py
+```
 
 ## Licence
 This project is licensed under [MIT](LICENSE).
