@@ -53,11 +53,9 @@ Install the dependencies with pip from the requirements.txt file.
 pip install -r requirements.txt
 ```
 
-If that doesn't work, install [Anaconda](https://www.anaconda.com/products/distribution) and follow the instructions of the Environment Anaconda.
-
 ## Environnement Anaconda
 
-If you want to launch with anaconda, make sure you have configured your Anaconda environment with the following specifications.
+If you want to launch with [Anaconda](https://www.anaconda.com/products/distribution), make sure you have configured your Anaconda environment with the following specifications.
 
 Clone the repository to your local machine.
 
