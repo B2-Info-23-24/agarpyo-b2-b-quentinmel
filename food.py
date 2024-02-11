@@ -22,21 +22,21 @@ class Food(Circle):
             for i in range(5):
                 x = random.randint(0, 1280)
                 y = random.randint(0, 720)
-                radius = random.randint(10, 20)
+                radius = 15
                 new_food = Food(x, y, radius, obstacle_rects)
                 self.foods.append(new_food)
         elif difficulty == "Normal":
             for i in range(3):
                 x = random.randint(0, 1280)
                 y = random.randint(0, 720)
-                radius = random.randint(10, 20)
+                radius = 15
                 new_food = Food(x, y, radius, obstacle_rects)
                 self.foods.append(new_food)
         elif difficulty == "Hard":
             for i in range(2):
                 x = random.randint(0, 1280)
                 y = random.randint(0, 720)
-                radius = random.randint(10, 20)
+                radius = 15
                 new_food = Food(x, y, radius, obstacle_rects)
                 self.foods.append(new_food)
     
